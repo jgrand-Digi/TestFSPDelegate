@@ -1,0 +1,4 @@
+file_system:
+    enabled: true
+    config:
+      message:  "It works!"
