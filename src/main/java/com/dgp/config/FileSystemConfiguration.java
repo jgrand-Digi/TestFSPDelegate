@@ -9,11 +9,12 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.dgp.LoggerAware;
 import com.dgp.nio.MyFileSystem;
 
 @Configuration
 @ConditionalOnProperty(prefix="file_system",name="enabled",havingValue="true")
-public class FileSystemConfiguration {
+public class FileSystemConfiguration implements LoggerAware {
     
     @Bean(name="defaultFileSystem", destroyMethod="")
     @ConfigurationProperties(prefix="file_system.config")
@@ -24,6 +25,9 @@ public class FileSystemConfiguration {
     
     @Autowired
     private void configure(FileSystem in_fs){
+        logInf("hello Inf");
+        logErr("Hello err");
+        logWarn("Hello warn");
         /*
          * Here should happen some configuration or checks on the file system 
          */
